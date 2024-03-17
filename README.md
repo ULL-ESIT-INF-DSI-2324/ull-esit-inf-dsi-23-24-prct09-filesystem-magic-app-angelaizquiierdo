@@ -5,3 +5,7 @@
 
 ## Configuracion del entorno 
 Lo primero que hago es instalar las dependencias de desarrollo.
+
+nvm install node
+
+npm install --global typescript

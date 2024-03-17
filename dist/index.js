@@ -1,6 +1,3 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.add = void 0;
 /**
  * Adds two __numbers__
  * @param firstNumber Consists of the first operand of the addition
@@ -10,7 +7,6 @@ exports.add = void 0;
  * add(1, 7) = 8
  * ```
  */
-function add(firstNumber, secondNumber) {
+export function add(firstNumber, secondNumber) {
     return firstNumber + secondNumber;
 }
-exports.add = add;
