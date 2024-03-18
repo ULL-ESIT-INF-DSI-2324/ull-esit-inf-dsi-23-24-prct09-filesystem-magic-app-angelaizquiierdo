@@ -8,10 +8,10 @@
     "dev": "tsc-watch --onSuccess \"node dist/index.js\"",
     "doc": "typedoc",
     "test": "mocha",
-    "coverage": "nyc npm test && nyc report --reporter=text-lcov | coveralls && rm -rf .nyc_output"
+    "coverage": "c8 npm test && c8 report --reporter=lcov"
   },
   "keywords": [],
-  "author": "",
+  "author": "Ángela Izquierdo Padrón",
   "license": "ISC",
   "dependencies": {
     "tsc": "^2.0.4"
