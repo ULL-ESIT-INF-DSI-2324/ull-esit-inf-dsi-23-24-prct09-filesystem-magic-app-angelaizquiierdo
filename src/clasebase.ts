@@ -13,7 +13,7 @@ export abstract class AlgoritmoGenerativo {
   }
 
   /**
-   * Contiene las secuencias de codigo
+   * Contiene las secuencias de codigo para realizar las distintas operaciones
    */
   public run(): void {
     const filteredData = this.filter(this.data, this.predicate);
@@ -22,6 +22,10 @@ export abstract class AlgoritmoGenerativo {
     this.resultado = result;
   }
 
+  /**
+   * Método para obtener resultado
+   * @returns resultado
+   */
   ObtenerResultado(): number {
     return this.resultado;
   }
@@ -44,4 +48,5 @@ export abstract class AlgoritmoGenerativo {
   protected afterMap() {}
   protected afterReduce() {}
 }
+
 export { Reducer, Predicate, Mapper };
