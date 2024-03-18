@@ -1,12 +1,13 @@
-/**
- * Adds two __numbers__
- * @param firstNumber Consists of the first operand of the addition
- * @param secondNumber Consists of the second operand of the addition
- * @returns The addition of the two numbers `firstNumber` and `secondNumber`
- * ```typescript
- * add(1, 7) = 8
- * ```
- */
-export function add(firstNumber: number, secondNumber: number) {
-  return firstNumber + secondNumber;
-}
+import { Reducer, Mapper, Predicate } from "./clasebase.js";
+import { TodoAlgoritmos } from "./subclase.js";
+
+const data = [1, 2, 3, 4, 5];
+const filterPredicate: Predicate<number> = (element) => element % 2 === 0;
+const mapper: Mapper<number, number> = (element) => element * 2;
+const reducer: Reducer<number, number> = (accumulator, current) =>
+  accumulator + current;
+
+const algorithm = new TodoAlgoritmos(data, filterPredicate, mapper, reducer);
+algorithm.run();
+const result = algorithm.ObtenerResultado();
+console.log(`Resultado: ${result}`);
