@@ -9,3 +9,5 @@ Lo primero que hago es instalar las dependencias de desarrollo.
 nvm install node
 
 npm install --global typescript
+
+[![Coverage Status](https://coveralls.io/repos/github/ULL-ESIT-INF-DSI-2324/ull-esit-inf-dsi-23-24-prct09-filesystem-magic-app-angelaizquiierdo/badge.svg?branch=main)](https://coveralls.io/github/ULL-ESIT-INF-DSI-2324/ull-esit-inf-dsi-23-24-prct09-filesystem-magic-app-angelaizquiierdo?branch=main)
