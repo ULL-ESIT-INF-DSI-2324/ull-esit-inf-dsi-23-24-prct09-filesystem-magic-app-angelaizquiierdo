@@ -265,7 +265,40 @@ enum Rareza {
 }
 ```
 ### Gestor de Cartas de Magic
-Tengo un fichero aparte que contiene todas las funciones que puede hacer con los comando manejando los ficheros.
+
+He creado un fichero en donde contiene varias funciones, cada función está diseñada para realizar una tarea específica relacionada con la gestión de cartas en la aplicación. El fichero lo he llamado **gestor_cartas**, las funciones que son:
+
+- `GuardarCarta(usuario: string, carta: Carta): void`. Esta función es la que se encarga de guardar una carta en la colección del usuario, lo primero es que hago es contruir la ruta del directorio donde se almacenarán las cartas del usuario, luego verifico si existe un directorio del usuario en el **sistema de archivos** con la funcion `fs.existsSync()`. Si no existe, crea el directorio `fs.mkdirSync(directorioUsuario)`. Luego, construyo la ruta completa del archivo donde se guardará la carta, en este caso concatenando el directorio del usuario con el ID de la carta y la extensión ".json".  `const rutaCarta = ${directorioUsuario}/${carta.id}.json` y guardo el el contenido utiliza la función `fs.writeFileSync(rutaCarta, JSON.stringify(carta))` para escribir la información de la carta en formato JSON en el archivo especificado por la ruta.  
+```ts
+export function GuardarCarta(usuario: string, carta: Carta): void {
+  console.log(
+    chalk.green(
+      `Añadiendo carta a la colección del usuario: ${usuario} con id ${carta.id}`,
+    ),
+  );
+  const directorioUsuario = `./src/Ejercicio-app/usuarios/${usuario}`;
+  if (!fs.existsSync(directorioUsuario)) {
+    fs.mkdirSync(directorioUsuario);
+  }
+
+  const rutaCarta = `${directorioUsuario}/${carta.id}.json`;
+  fs.writeFileSync(rutaCarta, JSON.stringify(carta));
+}
+```
+
+
+- `CargarCartas(usuario: string): Carta[]`. Esta función se encarga devolver las cartas del usuario dado. Primero que hacemos es contruir la ruta del directorio del usuario `("./src/Ejercicio-app/usuarios/")`. Luego verificamos si existencia del directorio del usuario con la funcion `fs.existsSync(directorioUsuario)` las cartas del usuario utilizando la función `CargarCartas(usuario)`.  Si el directorio del usuario existe, se utiliza la función` fs.readdirSync(directorioUsuario)` para obtener una lista de todos los archivos en ese directorio. Cada archivo representa una carta del usuario. Recorremos la lista de archivos obtenida en el paso anterior y se realiza para cada archivo, se construye la ruta completa del archivo ,  utilizando la función `fs.readFileSync(rutaCarta, "utf-8")` para leer el contenido del archivo en formato **JSON** y se guarda en una variable llamada **cartaJson**. Luego se utliza la función `JSON.parse(cartaJson)` para convertir la cadena JSON en un objeto de tipo Carta. Y agregamos la carta cargada al array cartas. Una vez que se han cargado todas las cartas del usuario, se devuelve el array cartas, que contiene todas las cartas cargadas desde el sistema de archivos.
+
+
+- `ModificarCarta(usuario: string, id: number, nuevaCarta: Carta): void` Esta función modifica una carta en la colección del usuario. Utiliza la función `CargarCartas(usuario)` para obtener todas las cartas del usuario especificado. Y luego utilizamos el método findIndex() para encontrar la posición de la carta en el array de cartas del usuario. Esto se hace buscando una carta cuyo ID coincida con el ID especificado como argumento de la función, luego se comprueba si se encontró la carta. Si el índice devuelto por findIndex() es diferente de -1, significa que la carta existe en la colección del usuario y puede ser modificada. Si no se encuentra la carta (índice igual a -1), la función lanza un error indicando que no existe ninguna carta con el ID especificado en la colección. Si se encuentra la carta, actualiza sus datos con la nueva información proporcionada en el parámetro nuevaCarta. Para hacer esto, sobrescribe la carta en la posición encontrada en el array de cartas del usuario con la nueva carta. Y luego Utiliza la función `GuardarCarta(usuario, coleccion[index])` para guardar los cambios realizados en la carta modificada. Esto implica sobrescribir el archivo JSON que contiene la carta con los nuevos datos.Si la carta se modifica correctamente, muestra un mensaje indicando que la carta con el ID especificado ha sido actualizada con éxito en la colección del usuario.
+Y si por alguna razón no se puede encontrar la carta con el ID especificado, la función lanza un error indicando que no existe ninguna carta con ese ID en la colección del usuario.
+
+- `EliminarCarta(usuario: string, id: number)`: void: Esta función elimina una carta de la colección del usuario. Carga todas las cartas del usuario, busca la carta con el ID especificado y la elimina del array de cartas. Además, elimina el archivo correspondiente al usuario en el sistema de archivos.
+
+- `ListaCartas(usuario: string)`: Esta función lista las cartas de un usuario. Primero carga las cartas del usuario y luego imprime la información de cada carta en la consola. Utiliza el módulo chalk para dar formato a la salida en la consola.
+
+- `MostrarCarta(usuario: string, id: number): void`: Esta función muestra la información de una carta específica de un usuario. Carga las cartas del usuario, busca la carta con el ID especificado y muestra su información en la consola. También utiliza chalk para dar formato a la salida.
+
 
 ## Conlusion 
 Lo complicado que me resulta es relizar los tests, ya para la gestion de ficheros con los tests bastante problematico, asi mismo la salida por pantalla tambien lo es.
