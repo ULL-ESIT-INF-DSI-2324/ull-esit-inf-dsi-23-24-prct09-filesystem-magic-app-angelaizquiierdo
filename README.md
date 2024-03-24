@@ -264,7 +264,10 @@ enum Rareza {
   Mitica = "Mitica",
 }
 ```
-Gestor de Cartas de Magic
-npx prettier --write .
+### Gestor de Cartas de Magic
+Tengo un fichero aparte que contiene todas las funciones que puede hacer con los comando manejando los ficheros.
+
+## Conlusion 
+Lo complicado que me resulta es relizar los tests, ya para la gestion de ficheros con los tests bastante problematico, asi mismo la salida por pantalla tambien lo es.
 
 [![Coverage Status](https://coveralls.io/repos/github/ULL-ESIT-INF-DSI-2324/ull-esit-inf-dsi-23-24-prct09-filesystem-magic-app-angelaizquiierdo/badge.svg?branch=main)](https://coveralls.io/github/ULL-ESIT-INF-DSI-2324/ull-esit-inf-dsi-23-24-prct09-filesystem-magic-app-angelaizquiierdo?branch=main)

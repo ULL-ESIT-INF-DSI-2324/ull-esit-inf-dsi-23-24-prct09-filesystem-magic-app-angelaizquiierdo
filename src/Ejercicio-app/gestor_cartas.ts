@@ -1,7 +1,7 @@
 import fs from "fs";
 import { Carta, ImprimirCarta } from "./cartas_magic.js";
-
 import chalk from "chalk";
+import path from "path";
 
 const log = console.log;
 
@@ -99,6 +99,16 @@ export function EliminarCarta(usuario: string, id: number): void {
         chalk.green(
           `Carta con ID ${id} eliminada y archivo ${filePath} borrado con éxito.`,
         ),
+      );
+    }
+    const directorioUsuario = `./src/Ejercicio-app/usuarios`;
+    // Verificar si la carpeta de usuario está vacía y eliminarla si es así
+    const userFolderPath = path.resolve(directorioUsuario, usuario);
+    const filesInFolder = fs.readdirSync(userFolderPath);
+    if (filesInFolder.length === 0) {
+      fs.rmdirSync(userFolderPath);
+      console.log(
+        `La carpeta de usuario '${usuario}' ha sido eliminada ya que estaba vacía.`,
       );
     }
   } else {
