@@ -1,7 +1,6 @@
-dist
-docs
-node_modules
-test
+dist/
+tests/
+.nyc_output/
 .eslintrc.json
 .gitignore
 .mocharc.json
